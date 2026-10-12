@@ -19,7 +19,7 @@ st.html(f'''
   <div class="bd-logo" role="img" aria-label="Bangladesh map">
     <img src="data:image/png;base64,{logo_data}" alt="Bangladesh flag map" />
   </div>
-  <h1><span>BD</span> Bangladesh AI Agent</h1>
+  <h1> Bangladesh AI Agent</h1>
   <p>Ask about institutions, hospitals, restaurants, or general knowledge.</p>
 </header>
 ''')
