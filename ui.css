@@ -4,7 +4,7 @@
 [data-testid="stMainBlockContainer"] { max-width: 980px; padding: 2rem 1.5rem 4rem; }
 .bd-header { text-align: center; margin: 0 0 20px; font-family: inherit; }
 .bd-logo { width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 13px; background: #0a3731; color: #10d6a0; display: grid; place-items: center; }
-.bd-logo svg { width: 33px; height: 40px; }
+.bd-logo img { width: 44px; height: 48px; object-fit: contain; display: block; }
 .bd-header h1 { padding: 0; margin: 0 0 10px; font-size: clamp(24px, 4vw, 34px); font-weight: 750; line-height: 1.25; letter-spacing: -.7px; color: #f5f7f8; }
 .bd-header h1 span { color: #10d6a0; }
 .bd-header p { color: #a4b0b5; font-size: 14px; line-height: 1.6; margin: 0; }

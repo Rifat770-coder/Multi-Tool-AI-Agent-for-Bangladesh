@@ -1,4 +1,5 @@
 """Simple Streamlit interface for the existing four-tool agent."""
+import base64
 from pathlib import Path
 import sqlite3
 
@@ -12,10 +13,11 @@ st.set_page_config(page_title='BD Bangladesh AI Agent', page_icon='🇧🇩', la
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
 st.html('<style>' + (Path(__file__).resolve().parent / 'ui.css').read_text(encoding='utf-8') + '</style>')
-st.html('''
+logo_data = base64.b64encode((Path(__file__).resolve().parent / 'assets' / 'bangladesh-logo.png').read_bytes()).decode('ascii')
+st.html(f'''
 <header class="bd-header">
   <div class="bd-logo" role="img" aria-label="Bangladesh map">
-    <svg viewBox="0 0 64 76" aria-hidden="true"><path fill="currentColor" d="M18 3l6 5-2 6 8 2 5-3 10 3 7-1-3 7-8 3 2 7-5 5 8 8 2 9 7 12-5 5-5-12-6-8-5 3-3-6-6 3-3 9-6-2-1-10-6-4 3-7-5-6 4-7-5-5 5-5-1-6z"/></svg>
+    <img src="data:image/png;base64,{logo_data}" alt="Bangladesh flag map" />
   </div>
   <h1><span>BD</span> Bangladesh AI Agent</h1>
   <p>Ask about institutions, hospitals, restaurants, or general knowledge.</p>
