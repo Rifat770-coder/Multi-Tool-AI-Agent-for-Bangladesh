@@ -1,0 +1,44 @@
+/* Keyed containers keep styles scoped to this interface. */
+.stApp { background: radial-gradient(ellipse at 50% 0%, rgba(16,214,160,.075), transparent 58%), #071315; }
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stMainBlockContainer"] { max-width: 980px; padding: 2rem 1.5rem 4rem; }
+.bd-header { text-align: center; margin: 0 0 20px; font-family: inherit; }
+.bd-logo { width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 13px; background: #0a3731; color: #10d6a0; display: grid; place-items: center; }
+.bd-logo svg { width: 33px; height: 40px; }
+.bd-header h1 { padding: 0; margin: 0 0 10px; font-size: clamp(24px, 4vw, 34px); font-weight: 750; line-height: 1.25; letter-spacing: -.7px; color: #f5f7f8; }
+.bd-header h1 span { color: #10d6a0; }
+.bd-header p { color: #a4b0b5; font-size: 14px; line-height: 1.6; margin: 0; }
+.st-key-question_card { background: rgba(10,29,29,.6); border: 1px solid rgba(16,214,160,.35); border-radius: 22px; padding: 16px; gap: 16px; }
+.st-key-input_row { background: #1a2c33; border-radius: 16px; padding: 7px 8px 7px 14px; transition: box-shadow 180ms ease; }
+.st-key-input_row:focus-within { box-shadow: 0 0 0 1px rgba(16,214,160,.65); }
+.st-key-input_row [data-testid="stTextInputRootElement"] { background: transparent; border: 0; box-shadow: none; }
+.st-key-input_row input { color: #f5f7f8; font-size: 15px; min-height: 44px; }
+.st-key-input_row input::placeholder { color: #a4b0b5; opacity: 1; }
+.st-key-input_row button { min-height: 52px; background: #10d6a0; border: 0; color: #06251e; border-radius: 12px; font-weight: 600; transition: background 180ms ease; }
+.st-key-input_row button:hover { background: #0ebe8f; color: #06251e; }
+.st-key-input_row button:focus-visible, .st-key-quick_questions button:focus-visible { outline: 2px solid #10d6a0; outline-offset: 3px; }
+.st-key-quick_questions { gap: 12px !important; padding: 0 7px; flex-wrap: wrap; }
+.st-key-quick_questions p { font-size: 13px; color: #d5dfe2; }
+.st-key-quick_questions button { min-height: 44px; padding: 8px 15px; border-radius: 18px; border: 1px solid rgba(164,176,181,.08); background: #192b30; color: #f5f7f8; transition: border-color 180ms ease, background 180ms ease; }
+.st-key-quick_questions button p { font-size: 13px; white-space: normal; }
+.st-key-quick_questions button:hover { border-color: rgba(16,214,160,.65); background: #0c3029; color: #f5f7f8; }
+.st-key-hospitals_chip button { border-color: rgba(16,214,160,.4); background: #092622; }
+.st-key-hospitals_chip button [data-testid="stIconMaterial"] { color: #10d6a0; }
+.st-key-answer_card { margin-top: 12px; padding: 22px; border-radius: 20px; background: #0a1d1d; border: 1px solid rgba(16,214,160,.22); overflow-wrap: anywhere; }
+.st-key-answer_card h3 { font-size: 20px; }
+@media (max-width: 640px) {
+  [data-testid="stMainBlockContainer"] { padding: 1.5rem 14px 2rem; }
+  .bd-header { margin-bottom: 22px; }
+  .bd-header p { font-size: 13px; max-width: 310px; margin: 0 auto; }
+  .st-key-question_card { padding: 12px; border-radius: 20px; }
+  .st-key-input_row [data-testid="stHorizontalBlock"] { flex-wrap: nowrap; gap: 6px; }
+  .st-key-input_row [data-testid="stColumn"]:first-child { min-width: 0; flex: 1 1 0; width: auto; }
+  .st-key-input_row [data-testid="stColumn"]:last-child { min-width: 76px; flex: 0 0 76px; width: 76px; }
+  .st-key-input_row { padding-left: 6px; }
+  .st-key-input_row input { font-size: 14px; }
+  .st-key-quick_questions { padding: 0; gap: 8px !important; }
+  .st-key-answer_card { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-key-input_row, .st-key-input_row button, .st-key-quick_questions button { transition: none; }
+}

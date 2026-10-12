@@ -1,0 +1,240 @@
+{
+  "institutions": {
+    "source": "https://huggingface.co/datasets/Mahadih534/Institutional-Information-of-Bangladesh/resolve/main/data.csv",
+    "rows": 34901,
+    "columns": [
+      {
+        "source": "INSTITUTE NAME",
+        "name": "institute_name",
+        "type": "TEXT"
+      },
+      {
+        "source": "EIIN",
+        "name": "eiin",
+        "type": "TEXT"
+      },
+      {
+        "source": "INSTITUTE_TYPE",
+        "name": "institute_type",
+        "type": "TEXT"
+      },
+      {
+        "source": "DIVISION_ID",
+        "name": "division_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "DIVISION",
+        "name": "division",
+        "type": "TEXT"
+      },
+      {
+        "source": "DISTRICT_ID",
+        "name": "district_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "DISTRICT",
+        "name": "district",
+        "type": "TEXT"
+      },
+      {
+        "source": "THANA_ID",
+        "name": "thana_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "THANA",
+        "name": "thana",
+        "type": "TEXT"
+      },
+      {
+        "source": "UNION_ID",
+        "name": "union_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "UNION_NAME",
+        "name": "union_name",
+        "type": "TEXT"
+      },
+      {
+        "source": "MAUZA_ID",
+        "name": "mauza_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "MAUZA_NAME",
+        "name": "mauza_name",
+        "type": "TEXT"
+      },
+      {
+        "source": "AREA_STATUS",
+        "name": "area_status",
+        "type": "TEXT"
+      },
+      {
+        "source": "GEOGRPYCAL_STATUS",
+        "name": "geographical_status",
+        "type": "TEXT"
+      },
+      {
+        "source": "ADDRESS",
+        "name": "address",
+        "type": "TEXT"
+      },
+      {
+        "source": "POST",
+        "name": "post",
+        "type": "TEXT"
+      },
+      {
+        "source": "MANAGEMENT_TYPE",
+        "name": "management_type",
+        "type": "TEXT"
+      },
+      {
+        "source": "MOBILE",
+        "name": "mobile",
+        "type": "TEXT"
+      },
+      {
+        "source": "STUDENT_TYPE",
+        "name": "student_type",
+        "type": "TEXT"
+      },
+      {
+        "source": "EDUCATION_LEVEL",
+        "name": "education_level",
+        "type": "TEXT"
+      },
+      {
+        "source": "AFFILIATION",
+        "name": "affiliation",
+        "type": "TEXT"
+      },
+      {
+        "source": "MPO_STATUS",
+        "name": "mpo_status",
+        "type": "TEXT"
+      }
+    ]
+  },
+  "hospitals": {
+    "source": "https://huggingface.co/datasets/Mahadih534/all-bangladeshi-hospitals/resolve/main/all-bangladesh-hosptals.csv",
+    "rows": 38886,
+    "columns": [
+      {
+        "source": "Id",
+        "name": "id",
+        "type": "TEXT"
+      },
+      {
+        "source": "Name",
+        "name": "name",
+        "type": "TEXT"
+      },
+      {
+        "source": "Name (Bangla)",
+        "name": "name_bangla",
+        "type": "TEXT"
+      },
+      {
+        "source": "Code",
+        "name": "code",
+        "type": "TEXT"
+      },
+      {
+        "source": "Agency",
+        "name": "agency",
+        "type": "TEXT"
+      },
+      {
+        "source": "Type",
+        "name": "type",
+        "type": "TEXT"
+      },
+      {
+        "source": "Division",
+        "name": "division",
+        "type": "TEXT"
+      },
+      {
+        "source": "District",
+        "name": "district",
+        "type": "TEXT"
+      },
+      {
+        "source": "City Corporation",
+        "name": "city_corporation",
+        "type": "TEXT"
+      },
+      {
+        "source": "Upazila",
+        "name": "upazila",
+        "type": "TEXT"
+      },
+      {
+        "source": "Paurasava",
+        "name": "paurasava",
+        "type": "TEXT"
+      },
+      {
+        "source": "Union",
+        "name": "union",
+        "type": "TEXT"
+      },
+      {
+        "source": "Private",
+        "name": "private",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  "restaurants": {
+    "source": "https://huggingface.co/datasets/Mahadih534/Bangladeshi-Restaurant-Data/resolve/main/restaurants.csv",
+    "rows": 12703,
+    "columns": [
+      {
+        "source": "place_id",
+        "name": "place_id",
+        "type": "TEXT"
+      },
+      {
+        "source": "name",
+        "name": "name",
+        "type": "TEXT"
+      },
+      {
+        "source": "latitude",
+        "name": "latitude",
+        "type": "REAL"
+      },
+      {
+        "source": "longitude",
+        "name": "longitude",
+        "type": "REAL"
+      },
+      {
+        "source": "rating",
+        "name": "rating",
+        "type": "REAL"
+      },
+      {
+        "source": "number_of_reviews",
+        "name": "number_of_reviews",
+        "type": "INTEGER"
+      },
+      {
+        "source": "affluence",
+        "name": "affluence",
+        "type": "REAL"
+      },
+      {
+        "source": "address",
+        "name": "address",
+        "type": "TEXT"
+      }
+    ]
+  }
+}

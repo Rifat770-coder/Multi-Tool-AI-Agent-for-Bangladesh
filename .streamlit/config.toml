@@ -1,0 +1,10 @@
+[theme]
+base = "dark"
+primaryColor = "#10D6A0"
+backgroundColor = "#071315"
+secondaryBackgroundColor = "#1A2C33"
+textColor = "#F5F7F8"
+linkColor = "#10D6A0"
+font = "sans-serif"
+baseRadius = "12px"
+buttonRadius = "14px"
