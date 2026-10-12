@@ -76,6 +76,8 @@ data/               Three SQLite databases and schema.json
 
 ### Simple UI
 
+![Bangladesh AI Agent interface](assets/Screenshot%202026-10-12%20223624.png)
+
 ```powershell
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
