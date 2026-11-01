@@ -1,5 +1,4 @@
 """Simple Streamlit interface for the existing four-tool agent."""
-from base64 import b64encode
 from pathlib import Path
 import sqlite3
 
@@ -14,14 +13,14 @@ st.set_page_config(page_title='BD Bangladesh AI Agent', page_icon='🇧🇩', la
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
 st.html('<style>' + (Path(__file__).resolve().parent / 'assets' / 'ui.css').read_text(encoding='utf-8') + '</style>')
-with st.container(key='brand_logo'):
-    # Inline the small logo to avoid a separate Streamlit media request on Render.
-    logo_path = Path(__file__).resolve().parent / 'assets' / 'bangladesh-logo.png'
-    logo_base64 = b64encode(logo_path.read_bytes()).decode('ascii')
-    st.html(
-        f'<img src="data:image/png;base64,{logo_base64}" '
-        'alt="Bangladesh AI Agent logo" width="44" height="48">'
-    )
+# Keep the badge and image in one HTML block so Streamlit's container layout
+# cannot squeeze the image wrapper or clip the artwork.
+st.html(
+    '<div class="bd-logo" role="img" aria-label="Bangladesh AI Agent logo">'
+    '<img src="app/static/bangladesh-logo.png" alt="Bangladesh AI Agent logo" '
+    'style="display:block;width:52px;height:56px;object-fit:contain;flex:none">'
+    '</div>'
+)
 st.html('''
 <header class="bd-header">
   <h1> Bangladesh AI Agent</h1>
