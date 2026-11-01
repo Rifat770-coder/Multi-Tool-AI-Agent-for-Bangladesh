@@ -1,0 +1,29 @@
+{
+  "institutions": {
+    "repository": "https://huggingface.co/datasets/Mahadih534/Institutional-Information-of-Bangladesh",
+    "revision": "6965701210fe390b19e5d2a05ca11874304a7b7f",
+    "url": "https://huggingface.co/datasets/Mahadih534/Institutional-Information-of-Bangladesh/resolve/6965701210fe390b19e5d2a05ca11874304a7b7f/data.csv",
+    "sha256": "77958ad88d655cc5e98e9c22868d06b4e94eefaec83c860de9ecc52ba556a89a",
+    "license": "unknown",
+    "verified_on": "2026-11-01",
+    "local_csv_matches": true
+  },
+  "hospitals": {
+    "repository": "https://huggingface.co/datasets/Mahadih534/all-bangladeshi-hospitals",
+    "revision": "6e5943b83cb9f9fb407efe87269afcd118e3bf93",
+    "url": "https://huggingface.co/datasets/Mahadih534/all-bangladeshi-hospitals/resolve/6e5943b83cb9f9fb407efe87269afcd118e3bf93/all-bangladesh-hosptals.csv",
+    "sha256": "6c7f941403f749b1bb601c22f2cbe727b77fe935a0f62e909b1b180f3c46dd69",
+    "license": "cc-by-2.0",
+    "verified_on": "2026-11-01",
+    "local_csv_matches": true
+  },
+  "restaurants": {
+    "repository": "https://huggingface.co/datasets/Mahadih534/Bangladeshi-Restaurant-Data",
+    "revision": "a0b97e645dfe7ac6780a15b1d38f6137cf5801ee",
+    "url": "https://huggingface.co/datasets/Mahadih534/Bangladeshi-Restaurant-Data/resolve/a0b97e645dfe7ac6780a15b1d38f6137cf5801ee/restaurants.csv",
+    "sha256": "55708f87c2e101c0b14fa829f1da9808514cb236dc5368779854ea114c670379",
+    "license": "cc-by-2.0",
+    "verified_on": "2026-11-01",
+    "local_csv_matches": true
+  }
+}

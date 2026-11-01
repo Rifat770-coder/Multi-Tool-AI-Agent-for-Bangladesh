@@ -4,3 +4,15 @@ __pycache__/
 *.pyc
 data/*.csv
 data/*.part
+
+.env.*
+!.env.example
+.streamlit/secrets.toml
+.venv*/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+.cache/

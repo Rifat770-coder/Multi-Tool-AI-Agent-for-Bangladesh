@@ -2,8 +2,8 @@ import os
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
-from db_tools import create_db_tools
-from web_tool import create_web_tool
+from bangladesh_agent.db_tools import create_db_tools
+from bangladesh_agent.web_tool import create_web_tool
 
 SYSTEM = '''You are the Multi-Tool AI Agent for Bangladesh. Always use tools before answering factual questions.
 Use InstitutionsDBTool for institutional dataset questions; HospitalsDBTool for hospital dataset questions;
