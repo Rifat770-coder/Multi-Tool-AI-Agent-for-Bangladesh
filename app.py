@@ -1,4 +1,5 @@
 """Simple Streamlit interface for the existing four-tool agent."""
+from base64 import b64encode
 from pathlib import Path
 import sqlite3
 
@@ -14,7 +15,13 @@ load_dotenv(Path(__file__).resolve().parent / '.env')
 
 st.html('<style>' + (Path(__file__).resolve().parent / 'assets' / 'ui.css').read_text(encoding='utf-8') + '</style>')
 with st.container(key='brand_logo'):
-    st.image(str(Path(__file__).resolve().parent / 'assets' / 'bangladesh-logo.png'), width=44)
+    # Inline the small logo to avoid a separate Streamlit media request on Render.
+    logo_path = Path(__file__).resolve().parent / 'assets' / 'bangladesh-logo.png'
+    logo_base64 = b64encode(logo_path.read_bytes()).decode('ascii')
+    st.html(
+        f'<img src="data:image/png;base64,{logo_base64}" '
+        'alt="Bangladesh AI Agent logo" width="44" height="48">'
+    )
 st.html('''
 <header class="bd-header">
   <h1> Bangladesh AI Agent</h1>
