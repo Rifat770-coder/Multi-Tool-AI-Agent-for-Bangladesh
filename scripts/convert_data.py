@@ -18,6 +18,9 @@ SOURCES = {
 
 
 def quote(name):
+    """Quote a normalized SQLite identifier; identifiers cannot use bind parameters."""
+    if not isinstance(name, str) or not re.fullmatch(r'\w+', name):
+        raise ValueError('Invalid SQL identifier')
     return '"' + name.replace('"', '""') + '"'
 
 
@@ -57,6 +60,8 @@ def infer_type(name, values):
 
 
 def convert(table, overwrite=False):
+    if table not in SOURCES:
+        raise ValueError('Unknown dataset')
     metadata = json.loads((Path(__file__).resolve().parents[1] / 'data/sources.json').read_text())[table]
     source = metadata['url']
     db_path = DATA / f'{table}.db'
@@ -84,6 +89,8 @@ def convert(table, overwrite=False):
         raise ValueError(f'{csv_path}: empty data or inconsistent row widths')
     names = column_names(headers)
     types = [infer_type(name, [row[i] for row in rows]) for i, name in enumerate(names)]
+    if any(kind not in ('TEXT', 'INTEGER', 'REAL') for kind in types):
+        raise ValueError('Invalid SQLite column type')
     def cast(value, kind):
         if kind == 'TEXT':
             return value
@@ -95,11 +102,18 @@ def convert(table, overwrite=False):
     converted = [tuple(cast(v, t) for v, t in zip(row, types)) for row in rows]
     temporary = DATA / f'{table}.db.part'
     with closing(sqlite3.connect(temporary)) as connection, connection:
+        # Safe identifier composition: table is allowlisted and quote() validates it.
+        # SQLite placeholders bind values, not identifiers. This is sqlite3, not SQLAlchemy.
+        # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query
         connection.execute(f'DROP TABLE IF EXISTS {quote(table)}')
         columns = ', '.join(f'{quote(n)} {t}' for n, t in zip(names, types))
+        # All names pass quote(); types are restricted to the three literals above.
+        # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query
         connection.execute(f'CREATE TABLE {quote(table)} ({columns})')
         placeholders = ', '.join('?' for _ in names)
         connection.executemany(f'INSERT INTO {quote(table)} VALUES ({placeholders})', converted)
+        # Only the allowlisted, quoted table name is interpolated; no data values.
+        # nosemgrep: python.sqlalchemy.security.sqlalchemy-execute-raw-query
         actual = connection.execute(f'SELECT * FROM {quote(table)}').fetchall()
         if actual != converted:
             raise AssertionError(f'{table}: source/import mismatch')

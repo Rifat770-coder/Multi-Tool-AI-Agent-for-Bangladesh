@@ -53,6 +53,39 @@ class ScriptedAgentModel(BaseChatModel):
 
 
 class Verification(unittest.TestCase):
+    def test_converter_rejects_sql_identifiers_and_binds_csv_values(self):
+        import hashlib
+        import tempfile
+        from pathlib import Path
+        from scripts import convert_data
+
+        for identifier in ['hospitals; DROP TABLE hospitals', 'x"', '', '../hospitals']:
+            with self.subTest(identifier=identifier), self.assertRaises(ValueError):
+                convert_data.quote(identifier)
+        with self.assertRaisesRegex(ValueError, 'Unknown dataset'):
+            convert_data.convert('hospitals; DROP TABLE hospitals')
+
+        # Simulate a checksum-approved source containing hostile headers and values.
+        content = b'''name); DROP TABLE hospitals;--,value\nRobert'); DROP TABLE hospitals;--,1\n'''
+        metadata = {'hospitals': {
+            'url': 'https://example.com/offline.csv', 'revision': 'synthetic',
+            'sha256': hashlib.sha256(content).hexdigest(),
+        }}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'hospitals.csv').write_bytes(content)
+            with patch('scripts.convert_data.DATA', root), patch(
+                'scripts.convert_data.json.loads', return_value=metadata
+            ):
+                info = convert_data.convert('hospitals')
+            self.assertEqual(info['rows'], 1)
+            with closing(sqlite3.connect(root / 'hospitals.db')) as connection:
+                self.assertEqual(connection.execute('SELECT * FROM hospitals').fetchone(),
+                                 ("Robert'); DROP TABLE hospitals;--", 1))
+                self.assertEqual(connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type = 'table'"
+                ).fetchall(), [('hospitals',)])
+
     def test_validation_configuration_and_bounds(self):
         from bangladesh_agent.validation import validate_question
         from bangladesh_agent.agent import create_agent
