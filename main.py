@@ -1,7 +1,8 @@
 from dotenv import load_dotenv
 from pathlib import Path
 import sqlite3
-from agent import create_agent
+from bangladesh_agent.agent import create_agent
+from bangladesh_agent.validation import validate_question
 
 
 def main():
@@ -9,7 +10,7 @@ def main():
     try:
         agent = create_agent()
     except (ValueError, OSError, sqlite3.Error) as error:
-        print(f'Setup error: {error}. Run python convert_data.py before starting.')
+        print('Setup error: check API keys in .env and the three databases. See README.md.')
         return 1
     print('Multi-Tool AI Agent for Bangladesh (type exit to quit)')
     while True:
@@ -18,9 +19,11 @@ def main():
             if question.lower() in ('exit', 'quit'):
                 break
             if question:
-                print(agent.invoke({'input': question})['output'])
+                print(agent.invoke({'input': validate_question(question)})['output'])
         except (EOFError, KeyboardInterrupt):
             break
+        except ValueError as error:
+            print('Invalid question or response. Use a question of at most 2,000 characters and try again.')
         except Exception as error:
             print(f'Request failed ({type(error).__name__}). Check API access and try again.')
     return 0

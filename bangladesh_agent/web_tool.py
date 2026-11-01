@@ -2,11 +2,13 @@
 import json
 import urllib.request
 from langchain_core.tools import StructuredTool
+from bangladesh_agent.validation import validate_question
 
 
 def create_web_tool(api_key):
     def search(question: str) -> str:
         try:
+            question = validate_question(question)
             request = urllib.request.Request(
                 'https://api.tavily.com/search',
                 data=json.dumps({'query': question, 'max_results': 5, 'search_depth': 'basic'}).encode(),

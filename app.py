@@ -6,13 +6,14 @@ import sqlite3
 import streamlit as st
 from dotenv import load_dotenv
 
-from agent import create_agent
+from bangladesh_agent.agent import create_agent
+from bangladesh_agent.validation import MAX_QUESTION_LENGTH, validate_question
 
 
 st.set_page_config(page_title='BD Bangladesh AI Agent', page_icon='🇧🇩', layout='wide')
 load_dotenv(Path(__file__).resolve().parent / '.env')
 
-st.html('<style>' + (Path(__file__).resolve().parent / 'ui.css').read_text(encoding='utf-8') + '</style>')
+st.html('<style>' + (Path(__file__).resolve().parent / 'assets' / 'ui.css').read_text(encoding='utf-8') + '</style>')
 logo_data = base64.b64encode((Path(__file__).resolve().parent / 'assets' / 'bangladesh-logo.png').read_bytes()).decode('ascii')
 st.html(f'''
 <header class="bd-header">
@@ -35,7 +36,7 @@ with st.container(key='question_card'):
             field, action = st.columns([8, 1], gap='small', vertical_alignment='center')
             with field:
                 question = st.text_input(
-                    'Your question', key='question',
+                    'Your question', key='question', max_chars=MAX_QUESTION_LENGTH,
                     placeholder='How many hospitals are in Dhaka?',
                     label_visibility='collapsed', icon=':material/description:',
                 )
@@ -59,6 +60,7 @@ if submitted:
         st.session_state.pop('answer', None)
         try:
             with st.spinner('Finding your answer…'):
+                question = validate_question(question)
                 if 'agent' not in st.session_state:
                     st.session_state.agent = create_agent()
                 result = st.session_state.agent.invoke({'input': question})
